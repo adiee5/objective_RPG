@@ -14,6 +14,11 @@ bool Usable::can_be_used(){
     return uses_left<=0;
 }
 
+void Usable::use(){
+    uses_left--;
+    use_action();
+}
+
 bool Usable::is_a_usable(){
     return true;
 }
@@ -38,4 +43,7 @@ void Statboost::print_stats(){
     std::cout<<"\no "<<boost<<"pkt.\n"
     "Zdrowie Przedmiotu: "<<health<<
     "\n=====\n";
+}
+const char *Statboost::get_type(){
+    return "Statboost";
 }
