@@ -10,11 +10,24 @@ unsigned long Item::get_worth(){
     return worth;
 }
 
+#pragma region Usable
+
+Usable::Usable(std::string name, unsigned long worth, unsigned int uses) 
+            : Item(name, worth){
+                if(!uses) throw "uses count cannot be 0";
+                uses_left=uses;
+            }
+
 bool Usable::can_be_used(){
-    return uses_left<=0;
+    return uses_left>0;
 }
 
-void Usable::use(){
+unsigned int Usable::get_uses_left(){
+    return uses_left;
+}
+
+useaction_t Usable::use(){
+    if (!can_be_used()) return;
     uses_left--;
     use_action();
 }
@@ -26,6 +39,25 @@ bool Usable::is_a_usable(){
 bool Usable::is_a_statboost(){
     return false;
 }
+
+#pragma endregion
+
+#pragma region Statboost
+
+Statboost::Statboost(std::string name, enum Stat stat, unsigned short boost, unsigned int health=10, unsigned long worth=100)
+            : Item(name, worth) {
+                if(stat==Stat::HEALTH)
+                    throw "Statboost cannot boost the `health` stat";
+                this->stat=stat;
+
+                if (boost==0)
+                    throw "boost cannot be 0";
+                this->boost=boost;
+
+                if (health==0)
+                    throw "health cannot be 0";
+                this->health=health;
+            }
 
 bool Statboost::is_a_usable(){
     return false;
@@ -44,6 +76,11 @@ void Statboost::print_stats(){
     "Zdrowie Przedmiotu: "<<health<<
     "\n=====\n";
 }
-const char *Statboost::get_type(){
+std::string Statboost::get_type(){
     return "Statboost";
 }
+bool Statboost::drain(){
+    return (--health)>0;
+}
+
+#pragma endregion

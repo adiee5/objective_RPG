@@ -11,7 +11,7 @@ class Item{
         Item(std::string name, unsigned long worth) : name(name), worth(worth){}
     public:
         std::string get_name();
-        const char virtual *get_type()=0; //classes name, I'll see if that's useful
+        std::string virtual get_type()=0; //classes name, I'll see if that's useful
         void virtual print_stats()=0;
         bool virtual is_a_statboost()=0;
         bool virtual is_a_usable()=0;
@@ -25,11 +25,12 @@ class Usable : public Item{
         unsigned int uses_left;
     protected:
         useaction_t virtual use_action()=0;
-        Usable(std::string name, unsigned long worth, unsigned int uses=1) 
-            : Item(name, worth), uses_left(uses){}
+        Usable(std::string name, unsigned long worth, unsigned int uses);
+        Usable(std::string name, unsigned long worth) : Item(name, worth), uses_left(1){}
     public:
-        bool can_be_used();
+        bool virtual can_be_used();
         bool virtual is_volatile()=0;
+        unsigned int get_uses_left();
         useaction_t use(); //void?
         bool is_a_usable() override;
         bool is_a_statboost() override;
@@ -42,12 +43,13 @@ class Statboost : public Item{
         unsigned short boost;
         unsigned int health;
     public:
-        Statboost(std::string name, enum Stat stat, unsigned short boost, unsigned int health=10, unsigned long worth=100);
+        Statboost(std::string name, enum Stat stat, unsigned short boost,
+            unsigned int health=10, unsigned long worth=100);
         bool drain();
         enum Stat get_stat();
         unsigned short get_boost();
         bool is_a_usable() override;
         bool is_a_statboost() override;
         void print_stats() override;
-        const char *get_type() override;
+        std::string get_type() override;
 };

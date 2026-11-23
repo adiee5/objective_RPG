@@ -2,24 +2,23 @@
 #include <iostream>
 
 void stat_display(enum Stat stat){
+    std::cout<<stat_to_string(stat);
+}
+
+std::string stat_to_string(enum Stat stat){
     switch (stat)
     {
     case Stat::MAXHEALTH:
-        std::cout<<"Max zdrowie";
-        break;
+        return "Max zdrowie";
     case Stat::ATTACK:
-        std::cout<<"Atak";
-        break;
+        return "Atak";
     case Stat::DEFENSE:
-        std::cout<<"Obrona";
-        break;
+        return "Obronność";
     case Stat::MAXITEMS:
-        std::cout<<"Pojemność Plecaka";
-        break;
+        return "Pojemność Plecaka";
     case Stat::SPEED:
-        std::cout<<"Szybkość";
-        break;
+        return "Szybkość";
     default:
-        throw "Wrong Stat value for stat display function";
+        throw "Wrong Stat value for stat->string conversion";
     }
 }

@@ -16,15 +16,17 @@ class Character{
         unsigned short attack;
         unsigned short defense;
         unsigned short speed;
+        unsigned long money;
         unsigned short count_boost_of(enum Stat stat);
     public:
         Character(/* args */);
         unsigned short get_attack();
 };
 
-class Player : Character{
-    private:
-        unsigned long money;
-};
+// Maybe there'll still be a use for this subclass
+//class Player : Character{
+//    private:
+        
+//};
 
 #endif

@@ -1,7 +1,7 @@
 SRC= main.cpp item.cpp characters.cpp stattypes.cpp
 
 
-.PHONY: all
+.PHONY: all clean
 
 all: RPG
 
