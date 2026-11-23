@@ -5,7 +5,7 @@ class Potion : public Usable
 private:
     enum Stat stat;
     unsigned short value;
-    useaction_t use_action();
+    Action use_action();
 public:
     Potion(std::string name, enum Stat stat, unsigned short value, unsigned long worth=150);
     Potion(enum Stat stat, unsigned short value, unsigned long worth=150) 
@@ -20,7 +20,7 @@ class Shield : public Usable
 {
 private:
     unsigned short health;
-    useaction_t use_action();
+    Action use_action();
 public:
     Shield(std::string name, unsigned short health, unsigned long worth=150);
     Shield(unsigned short health, unsigned long worth=150)
@@ -49,7 +49,7 @@ class Wand : public Usable{
 private:
     unsigned int max_uses;
     unsigned short damage;
-    useaction_t use_action();
+    Action use_action();
 public:
     Wand(std::string name, unsigned int uses, unsigned short damage, unsigned long worth=500);
     Wand(unsigned int uses, unsigned short damage, unsigned long worth=500) : Wand("Różdżka", uses, damage, worth){}
@@ -61,7 +61,7 @@ public:
 
 class WandRefill : public Usable{
     private:
-        useaction_t use_action();
+        Action use_action();
     public:
         WandRefill() : Usable("Wkład do różdżki", 100){}
         bool is_volatile() override;

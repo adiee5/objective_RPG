@@ -3,7 +3,7 @@
 
 #pragma region Potion
 
-useaction_t Potion::use_action(){
+Action Potion::use_action(){
     // TODO
 }
 
@@ -34,7 +34,7 @@ std::string Potion::get_type(){
 
 #pragma region Shield
 
-useaction_t Shield::use_action(){
+Action Shield::use_action(){
     // TODO
 }
 
@@ -85,7 +85,7 @@ void Sword::print_stats(){
 
 #pragma region Wand
 
-useaction_t Wand::use_action(){
+Action Wand::use_action(){
     // TODO
 }
 
@@ -117,7 +117,7 @@ void Wand::print_stats(){
 
 #pragma region WandRefill
 
-useaction_t WandRefill::use_action(){
+Action WandRefill::use_action(){
     // TODO
 }
 

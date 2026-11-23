@@ -26,10 +26,16 @@ unsigned int Usable::get_uses_left(){
     return uses_left;
 }
 
-useaction_t Usable::use(){
+void Usable::use(bool player_pov, Character *player, Character* enemy=nullptr){
     if (!can_be_used()) return;
+    if (player==nullptr) throw "`player` cannot be null! (`player` variable is about a character who uses the item)";
+    auto a=use_action();
+    if (player_pov && enemy==nullptr && a.get_target()==ActionTarget::ENEMY){
+        std::cout<<"Ten przedmiot możesz użyć jedynie w walce\n";
+        return;
+    }
     uses_left--;
-    use_action();
+    
 }
 
 bool Usable::is_a_usable(){

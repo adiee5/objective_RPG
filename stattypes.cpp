@@ -10,6 +10,8 @@ std::string stat_to_string(enum Stat stat){
     {
     case Stat::MAXHEALTH:
         return "Max zdrowie";
+    case Stat::HEALTH:
+        return "Zdrowie";
     case Stat::ATTACK:
         return "Atak";
     case Stat::DEFENSE:

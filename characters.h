@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "item.h"
+#include "itemtypes.h"
+#include "action.h"
 
 
 class Character{
@@ -17,8 +18,11 @@ class Character{
         unsigned short defense;
         unsigned short speed;
         unsigned long money;
+        Shield *shield=nullptr;
         unsigned short count_boost_of(enum Stat stat);
+        friend void CharAction::affect(Character* c);
     public:
+        
         Character(/* args */);
         unsigned short get_attack();
 };

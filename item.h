@@ -3,6 +3,9 @@
 #include "stattypes.h"
 #include <string>
 
+#include "action.h"
+#include "characters.h"
+
 class Item{
     private:
         std::string name;
@@ -18,20 +21,18 @@ class Item{
         unsigned long get_worth();
 };
 
-typedef void useaction_t;
-
 class Usable : public Item{
     private:
         unsigned int uses_left;
     protected:
-        useaction_t virtual use_action()=0;
+        Action virtual use_action()=0;
         Usable(std::string name, unsigned long worth, unsigned int uses);
         Usable(std::string name, unsigned long worth) : Item(name, worth), uses_left(1){}
     public:
         bool virtual can_be_used();
         bool virtual is_volatile()=0;
         unsigned int get_uses_left();
-        useaction_t use(); //void?
+        void use(bool player_pov, Character *player, Character* enemy=nullptr);
         bool is_a_usable() override;
         bool is_a_statboost() override;
 };
