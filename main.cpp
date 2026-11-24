@@ -18,6 +18,7 @@ int main(){
     player.give_item(new Potion(Stat::HEALTH, 20));
     player.give_item(new Sword(10));
     player.give_item(new Shield(30));
+    player.give_item(new Wand());
 
     enemy.give_item(new Potion(Stat::HEALTH, 10));
     enemy.give_item(new Sword(5));

@@ -16,6 +16,7 @@ void CharAction::affect(Character *c){
     case Stat::MAXHEALTH:
         c->maxhealth=((value<0&&value+c->maxhealth>c->maxhealth)
             ||(value>0&&value+c->maxhealth<c->maxhealth))?c->maxhealth+value:0;
+        break;
     case Stat::HEALTH:
         if (value<0 && c->shield!=nullptr){
             c->shield->take_damage(this);
@@ -29,18 +30,23 @@ void CharAction::affect(Character *c){
             c->health=((value<0&&value+c->health>c->health)
                 ||(value>0&&value+c->health<c->health))?c->health+value:0;
         }
+        break;
     case Stat::ATTACK:
         c->attack=((value<0&&value+c->attack>c->attack)
             ||(value>0&&value+c->attack<c->attack))?c->attack+value:0;
+        break;
     case Stat::DEFENSE:
         c->defense=((value<0&&value+c->defense>c->defense)
             ||(value>0&&value+c->defense<c->defense))?c->defense+value:0;
+        break;
     case Stat::MAXITEMS:
         c->maxitems=((value<0&&value+c->maxitems>c->maxitems)
             ||(value>0&&value+c->maxitems<c->maxitems))?c->maxitems+value:0;
+        break;
     case Stat::SPEED:
         c->speed=((value<0&&value+c->speed>c->speed)
             ||(value>0&&value+c->speed<c->speed))?c->speed+value:0;
+        break;
     default:
         throw "Wrong Stat value in the action";
     }

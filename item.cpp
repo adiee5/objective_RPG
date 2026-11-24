@@ -35,6 +35,11 @@ void Usable::use(bool player_pov, Character *player, Character* enemy){
         std::cout<<"Ten przedmiot możesz użyć jedynie w walce\n";
         return;
     }
+    if(a.get_target()==ActionTarget::ENEMY||a.get_target()==ActionTarget::PLAYER){
+        auto ca=(CharAction*)(&a);
+        ca->affect(a.get_target()==ActionTarget::ENEMY?enemy:player);
+    }
+
     uses_left--;
     
 }
