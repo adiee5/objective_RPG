@@ -1,13 +1,14 @@
 #include "itemtypes.h"
+#include "action.h"
 #include <iostream>
 
 #pragma region Potion
 
 Action Potion::use_action(){
-    // TODO
+    return CharAction(this, ActionTarget::PLAYER, stat, value);
 }
 
-Potion::Potion(std::string name, enum Stat stat, unsigned short value, unsigned long worth=150) 
+Potion::Potion(std::string name, enum Stat stat, unsigned short value, unsigned long worth) 
     : Usable(name, worth), stat(stat){
         if(value==0) throw "Potion value cannot be 0";
         this->value=value;
@@ -35,10 +36,10 @@ std::string Potion::get_type(){
 #pragma region Shield
 
 Action Shield::use_action(){
-    // TODO
+    return ShieldAction(this, ActionTarget::PLAYER);
 }
 
-Shield::Shield(std::string name, unsigned short health, unsigned long worth=150) : Usable(name, worth, ~0U){
+Shield::Shield(std::string name, unsigned short health, unsigned long worth) : Usable(name, worth, ~0U){
     if (health==0) throw "Shield health cannot be 0";
     this->health=health;
 }
@@ -64,6 +65,10 @@ std::string Shield::get_type(){
     return "Shield";
 }
 
+void Shield::take_damage(Action *a){
+    health =(health+a->get_value()>health)?0:health+a->get_value();
+}
+
 #pragma endregion
 
 #pragma region Sword
@@ -76,8 +81,8 @@ void Sword::print_stats(){
     std::cout<<"=====\n"
     <<get_name()<<
     "\n-----\n"
-    "Zwiększa Atak o "<<boost<<"pkt. i zwiększa szanse na atak krytyczny\n"
-    "Zdrowie Miecza: "<<health<<
+    "Zwiększa Atak o "<<boost<<"pkt." /*" i zwiększa szanse na atak krytyczny"*/
+    "\nZdrowie Miecza: "<<health<<
     "\n=====\n";
 }
 
@@ -86,10 +91,10 @@ void Sword::print_stats(){
 #pragma region Wand
 
 Action Wand::use_action(){
-    // TODO
+    return CharAction(this, ActionTarget::ENEMY, Stat::HEALTH, -((short)damage));
 }
 
-Wand::Wand(std::string name, unsigned int uses, unsigned short damage, unsigned long worth=500) 
+Wand::Wand(std::string name, unsigned int uses, unsigned short damage, unsigned long worth) 
     : Usable(name, worth, uses){
         max_uses=uses; //already checked by the parrent class constructor.
         if (damage==0) throw "damage cannot be 0";

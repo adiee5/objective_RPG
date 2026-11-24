@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gaphor xmlns="https://gaphor.org/model" xmlns:Core="https://gaphor.org/modelinglanguage/Core" xmlns:UML="https://gaphor.org/modelinglanguage/UML" version="4" gaphor-version="3.3.2">
+<model>
+<Core:StyleSheet id="58d6989a-66f8-11ec-b4c8-0456e5e540ed">
+<styleSheet>
+<val>diagram {
+ /* line-style: sloppy 0.3; */
+}
+
+controlflow {
+  dash-style: 0;
+}
+</val>
+</styleSheet>
+</Core:StyleSheet>
+<UML:Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
+<name>
+<val>Model Name Here</val>
+</name>
+</UML:Package>
+<UML:ClassDiagram id="6d4a745b-e767-11f1-9739-450801cc9c7b">
+<name>
+<val>New Diagram</val>
+</name>
+<ownedPresentation>
+<reflist>
+<ref refid="6fca522e-e767-11f1-b08f-450801cc9c7b"/>
+</reflist>
+</ownedPresentation>
+</UML:ClassDiagram>
+<UML:Class id="6fc9e618-e767-11f1-b89c-450801cc9c7b">
+<isAbstract>
+<val>True</val>
+</isAbstract>
+<name>
+<val>Item</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="a7241477-e767-11f1-ac39-450801cc9c7b"/>
+<ref refid="3880e3af-e768-11f1-89ec-450801cc9c7b"/>
+</reflist>
+</ownedAttribute>
+<ownedOperation>
+<reflist>
+<ref refid="b54ba5d6-e767-11f1-9523-450801cc9c7b"/>
+<ref refid="e14f2446-e768-11f1-98c1-450801cc9c7b"/>
+</reflist>
+</ownedOperation>
+<presentation>
+<reflist>
+<ref refid="6fca522e-e767-11f1-b08f-450801cc9c7b"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="6fca522e-e767-11f1-b08f-450801cc9c7b">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 60.9101448059082, 114.64842987060547)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>354.0</val>
+</width>
+<height>
+<val>125.0</val>
+</height>
+<diagram>
+<ref refid="6d4a745b-e767-11f1-9739-450801cc9c7b"/>
+</diagram>
+<subject>
+<ref refid="6fc9e618-e767-11f1-b89c-450801cc9c7b"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="a7241477-e767-11f1-ac39-450801cc9c7b">
+<name>
+<val>name</val>
+</name>
+<structuredClassifier>
+<ref refid="6fc9e618-e767-11f1-b89c-450801cc9c7b"/>
+</structuredClassifier>
+<typeValue>
+<val>string</val>
+</typeValue>
+<visibility>
+<val>private</val>
+</visibility>
+</UML:Property>
+<UML:Operation id="b54ba5d6-e767-11f1-9523-450801cc9c7b">
+<class_>
+<ref refid="6fc9e618-e767-11f1-b89c-450801cc9c7b"/>
+</class_>
+<isAbstract>
+<val>True</val>
+</isAbstract>
+<name>
+<val>print_stats</val>
+</name>
+</UML:Operation>
+<UML:Property id="3880e3af-e768-11f1-89ec-450801cc9c7b">
+<name>
+<val>worth</val>
+</name>
+<structuredClassifier>
+<ref refid="6fc9e618-e767-11f1-b89c-450801cc9c7b"/>
+</structuredClassifier>
+<typeValue>
+<val>unsigned long</val>
+</typeValue>
+<visibility>
+<val>private</val>
+</visibility>
+</UML:Property>
+<UML:Operation id="e14f2446-e768-11f1-98c1-450801cc9c7b">
+<class_>
+<ref refid="6fc9e618-e767-11f1-b89c-450801cc9c7b"/>
+</class_>
+<name>
+<val>Item</val>
+</name>
+<ownedParameter>
+<reflist>
+<ref refid="fb63cea4-e768-11f1-a904-450801cc9c7b"/>
+<ref refid="22a3b9a6-e769-11f1-bcb3-450801cc9c7b"/>
+<ref refid="31a46581-e769-11f1-9033-450801cc9c7b"/>
+</reflist>
+</ownedParameter>
+<visibility>
+<val>protected</val>
+</visibility>
+</UML:Operation>
+<UML:Parameter id="fb63cea4-e768-11f1-a904-450801cc9c7b">
+<name>
+<val>name</val>
+</name>
+<ownerFormalParam>
+<ref refid="e14f2446-e768-11f1-98c1-450801cc9c7b"/>
+</ownerFormalParam>
+<typeValue>
+<val>string</val>
+</typeValue>
+</UML:Parameter>
+<UML:Parameter id="22a3b9a6-e769-11f1-bcb3-450801cc9c7b">
+<name>
+<val>worth</val>
+</name>
+<ownerFormalParam>
+<ref refid="e14f2446-e768-11f1-98c1-450801cc9c7b"/>
+</ownerFormalParam>
+<typeValue>
+<val>unsigned long</val>
+</typeValue>
+</UML:Parameter>
+<UML:Parameter id="31a46581-e769-11f1-9033-450801cc9c7b">
+<direction>
+<val>return</val>
+</direction>
+<ownerFormalParam>
+<ref refid="e14f2446-e768-11f1-98c1-450801cc9c7b"/>
+</ownerFormalParam>
+<typeValue>
+<val>Item</val>
+</typeValue>
+</UML:Parameter>
+</model>
+</gaphor>

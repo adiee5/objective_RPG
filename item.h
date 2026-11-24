@@ -3,8 +3,9 @@
 #include "stattypes.h"
 #include <string>
 
-#include "action.h"
-#include "characters.h"
+
+class Action;
+class Character;
 
 class Item{
     private:

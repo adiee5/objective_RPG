@@ -1,4 +1,4 @@
-SRC= main.cpp item.cpp characters.cpp stattypes.cpp
+SRC= main.cpp item.cpp characters.cpp stattypes.cpp action.cpp itemtypes.cpp
 
 
 .PHONY: all clean

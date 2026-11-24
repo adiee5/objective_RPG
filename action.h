@@ -1,5 +1,10 @@
+#pragma once
+
 #include "stattypes.h"
-#include "characters.h"
+
+
+class Item;
+class Character;
 
 enum ActionTarget{
     PLAYER,
@@ -15,6 +20,7 @@ class Action{
         Action(Item *item, enum ActionTarget target, unsigned short value) : item(item), target(target), value(value){}
     public:
         enum ActionTarget get_target();
+        short get_value();
 };
 
 class CharAction : public Action{
@@ -29,7 +35,7 @@ class CharAction : public Action{
 class ShieldAction : public CharAction{
     public:
         ShieldAction(Item *item, enum ActionTarget target) 
-            : CharAction(item, target, 0, 0){}
-        void virtual affect(Character* c);
+            : CharAction(item, target, (enum Stat)0, 0){}
+        void affect(Character* c) override;
 
-}
+};

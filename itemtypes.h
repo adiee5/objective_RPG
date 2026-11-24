@@ -1,7 +1,12 @@
+#pragma once
+
+#include "action.h"
 #include "item.h"
 
-class Potion : public Usable
-{
+class Statboost;
+class Action;
+
+class Potion : public Usable{
 private:
     enum Stat stat;
     unsigned short value;
@@ -31,6 +36,7 @@ public:
     bool is_volatile() override;
     std::string get_type() override;
     void print_stats() override;
+    void take_damage(Action *a);
 };
 
 class Sword : public Statboost{

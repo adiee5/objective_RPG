@@ -1,7 +1,13 @@
 #include "action.h"
+#include "itemtypes.h"
+#include "characters.h"
 
-ActionTarget Action::get_target(){
+enum ActionTarget Action::get_target(){
     return target;
+}
+
+short Action::get_value(){
+    return value;
 }
 
 void CharAction::affect(Character *c){
@@ -11,16 +17,35 @@ void CharAction::affect(Character *c){
         c->maxhealth=((value<0&&value+c->maxhealth>c->maxhealth)
             ||(value>0&&value+c->maxhealth<c->maxhealth))?c->maxhealth+value:0;
     case Stat::HEALTH:
-        return "Zdrowie";
+        if (value<0 && c->shield!=nullptr){
+            c->shield->take_damage(this);
+            if (!c->shield->can_be_used()){
+                auto it = c->items.begin();
+                while (it!=c->items.end()&&*it!=c->shield) it++;
+                c->items.erase(it);
+            }
+            c->shield=nullptr;
+        }else{
+            c->health=((value<0&&value+c->health>c->health)
+                ||(value>0&&value+c->health<c->health))?c->health+value:0;
+        }
     case Stat::ATTACK:
-        return "Atak";
+        c->attack=((value<0&&value+c->attack>c->attack)
+            ||(value>0&&value+c->attack<c->attack))?c->attack+value:0;
     case Stat::DEFENSE:
-        return "Obronność";
+        c->defense=((value<0&&value+c->defense>c->defense)
+            ||(value>0&&value+c->defense<c->defense))?c->defense+value:0;
     case Stat::MAXITEMS:
-        return "Pojemność Plecaka";
+        c->maxitems=((value<0&&value+c->maxitems>c->maxitems)
+            ||(value>0&&value+c->maxitems<c->maxitems))?c->maxitems+value:0;
     case Stat::SPEED:
-        return "Szybkość";
+        c->speed=((value<0&&value+c->speed>c->speed)
+            ||(value>0&&value+c->speed<c->speed))?c->speed+value:0;
     default:
-        throw "Wrong Stat value for stat->string conversion";
+        throw "Wrong Stat value in the action";
     }
+}
+
+void ShieldAction::affect(Character *c){
+    c->shield=(Shield*)item;
 }

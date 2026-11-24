@@ -1,4 +1,5 @@
 #include "item.h"
+#include "action.h"
 #include <cstdlib>
 #include <iostream>
 
@@ -26,7 +27,7 @@ unsigned int Usable::get_uses_left(){
     return uses_left;
 }
 
-void Usable::use(bool player_pov, Character *player, Character* enemy=nullptr){
+void Usable::use(bool player_pov, Character *player, Character* enemy){
     if (!can_be_used()) return;
     if (player==nullptr) throw "`player` cannot be null! (`player` variable is about a character who uses the item)";
     auto a=use_action();
@@ -50,7 +51,7 @@ bool Usable::is_a_statboost(){
 
 #pragma region Statboost
 
-Statboost::Statboost(std::string name, enum Stat stat, unsigned short boost, unsigned int health=10, unsigned long worth=100)
+Statboost::Statboost(std::string name, enum Stat stat, unsigned short boost, unsigned int health, unsigned long worth)
             : Item(name, worth) {
                 if(stat==Stat::HEALTH)
                     throw "Statboost cannot boost the `health` stat";
@@ -71,6 +72,14 @@ bool Statboost::is_a_usable(){
 
 bool Statboost::is_a_statboost(){
     return true;
+}
+
+enum Stat Statboost::get_stat(){
+    return stat;
+}
+
+unsigned short Statboost::get_boost(){
+    return boost;
 }
 
 void Statboost::print_stats(){
