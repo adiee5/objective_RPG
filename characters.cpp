@@ -76,6 +76,6 @@ bool Character::use_item(unsigned short item_index, Character *enemy, bool playe
     if (i==nullptr) return false;
     if (!i->is_a_usable()) return false;
     auto u=(Usable*)i;
-    u->use(true, this, enemy);
+    u->use(player_pov, this, enemy);
     return true;
 }
